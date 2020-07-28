@@ -16,7 +16,12 @@ router.get('/', (req, res) => {
 
 router.get('/posts', (req, res) => {
   client.blogPosts(process.env.BLOG_NAME, (err, data) => {
-    res.send(data.posts); // most recent 20 posts
+    try {
+      res.send(data.posts); // most recent 20 posts
+    } catch (err) {
+      console.log('ERROR: ', err);
+      res.status(500);
+    }
   });
   
 });

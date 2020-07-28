@@ -1,15 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
-import './App.css';
+
+const StyledApp = styled.div`
+  width: 1024px;
+  margin: 0 auto;
+`;
 
 function App() {
   return (
-    <div className="App">
+    <StyledApp>
       <Switch>
         <Route exact path='/' component={Home} />
       </Switch>
-    </div>
+    </StyledApp>
   );
 }
 

@@ -1,32 +1,16 @@
 const express = require('express');
+const path = require('path');
+const router = require('./router');
+
 const app = express();
-const router = express.Router();
-const tumblr = require('tumblr.js');
-require('dotenv').config();
-const client = tumblr.createClient({
-  consumer_key: process.env.CONSUMER_KEY,
-  consumer_secret: process.env.CONSUMER_SECRET,
-  token: process.env.OAUTH_TOKEN,
-  token_secret: process.env.OAUTH_SECRET
+app.use('/', express.static(path.join(__dirname, 'client/build')));
+app.use('/api', router);
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
-app.use('/', router);
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
-router.get('/', (req, res) => {
-  try {
-    client.blogPosts(process.env.BLOG_NAME, (err, data) => {
-      res.send(data.posts[0]);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-router.get('/posts', (req, res) => {
-  client.blogPosts(process.env.BLOG_NAME, (err, data) => {
-    res.send(data.posts); // most recent 20 posts
-  });
-  
-});
-
-app.listen(4560);
+app.listen(4560, () => console.log('Mayushi listening on port 4560'));

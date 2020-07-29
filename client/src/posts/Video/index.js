@@ -7,24 +7,49 @@ const Caption = styled.section`
   text-align: left;
   max-width: calc(800px - (${theme.fontSizes.large} * 2));
   margin: -0.25rem auto 0;
-  background-color: #fff7f0;
   padding: ${theme.fontSizes.large};
-
-  blockquote {
-    margin: ${theme.fontSizes.medium} 0 ${theme.fontSizes.medium} ${theme.fontSizes.small};
-    padding-left: ${theme.fontSizes.medium};
-    border-left: solid 1px ${theme.colors.lightBlue};
-  }
 `;
 
 const Video = ({ post }) => {
+  const StyledVideo = styled.video`
+    background-image: url(${post.thumbnail_url});
+    background-size: cover;
+    background-position: center;
+    margin: 0 -4rem;
+    height: 450px;
+    width: 800px;
+  `;
+
+  const StyledYoutube = styled.iframe`
+    margin: 0 -4rem;
+    height: 450px;
+    width: 800px;
+    border: none;
+  `;
+
+  const content = post.trail.reduce((acc, tumblr, index) => {
+    if (!tumblr.content_raw) return acc;
+    if (tumblr.blog.name !== 'dentednerd' || index > 0) {
+      acc.push(`<a class="reblog-byline" href="https://${tumblr.blog.name}.tumblr.com">${tumblr.blog.name}:</a>`);
+      acc.push(`<blockquote>${tumblr.content_raw}</blockquote>`);
+    }
+    return acc;
+  }, []).join("");
+
   return (
-    <Post>
-      <video width="800" height="450" controls>
-        <source src={post.video_url} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <Caption dangerouslySetInnerHTML={{ __html: post.caption }} />
+    <Post post={post}>
+      {post.video_type === "youtube" && (
+        <StyledYoutube id="ytplayer" type="text/html" width="800" height="450"
+        src={`https://www.youtube.com/embed/${post.video.youtube.video_id}`}
+        frameborder="0" />
+      )}
+      {post.video_type !== "youtube" && (
+        <StyledVideo width="800" height="450" controls>
+          <source src={post.video_url} type="video/mp4" />
+          Your browser does not support the video tag.
+        </StyledVideo>
+      )}
+      {(content || post.caption) && <Caption dangerouslySetInnerHTML={{ __html: content || post.caption }} />}
     </Post>
   )
 }

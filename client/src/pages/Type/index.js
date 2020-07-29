@@ -8,13 +8,13 @@ import Link from '../../posts/Link';
 import Quote from '../../posts/Quote';
 import Chat from '../../posts/Chat';
 
-const Home = () => {
+const Type = (props) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch('api/posts')
+    fetch(`api/posts/${props.match.params.type}`)
     .then(res => res.json())
     .then(posts => setPosts(posts));
-  }, []);
+  }, [props.match.params.type]);
 
   return (
     <div>
@@ -47,4 +47,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default Type;

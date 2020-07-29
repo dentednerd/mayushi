@@ -17,13 +17,23 @@ router.get('/', (req, res) => {
 router.get('/posts', (req, res) => {
   client.blogPosts(process.env.BLOG_NAME, (err, data) => {
     try {
-      res.send(data.posts); // most recent 20 posts
+      res.send(data.posts);
     } catch (err) {
       console.log('ERROR: ', err);
       res.status(500);
     }
   });
-  
+});
+
+router.get('/posts/:type', (req, res) => {
+  client.blogPosts(process.env.BLOG_NAME, {type: req.params.type}, (err, data) => {
+    try {
+      res.send(data.posts);
+    } catch (err) {
+      console.log('ERROR: ', err);
+      res.status(500);
+    }
+  });
 });
 
 module.exports = router;

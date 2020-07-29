@@ -43,22 +43,42 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: ${theme.colors.darkBlue};
     text-decoration: none;
+
     &:hover {
       text-decoration: underline;
     }
   }
 
-  h1, h1 a {
+  a.reblog-byline {
+    display: inline-block;
     font-family: Raleway, sans-serif;
-    color: ${theme.colors.darkBlue};
+    padding: ${theme.fontSizes.small};
+    background-color: ${theme.colors.midBlue};
+    color: #fff;
+    margin: 0 0 ${theme.fontSizes.medium};
+  }
+
+  h1 {
+    display: inline-block;
+    font-family: Raleway, sans-serif;
+    color: #fff;
     font-size: ${theme.fontSizes.xLarge};
     line-height: ${theme.fontSizes.xLarge};
-    text-decoration: none;
     font-family: 'Open Sans Condensed', sans-serif;
     text-transform: uppercase;
-    margin: 1rem 0;
-    &:hover {
+    margin: 0 0 1rem;
+    padding: 1rem 0;
+    border-bottom: solid 1px #fff;
+    width: auto;
+    
+    a {
+      color: #fff;
       text-decoration: none;
+
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
     }
   }
 
@@ -71,5 +91,45 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0px 2px 4px #b17948;
     padding: ${theme.fontSizes.large};
     text-align: center;
+    max-width: 800px;
+    margin: 0 -4rem;
+    z-index: 2;
+  }
+
+  blockquote {
+    margin-bottom: ${theme.fontSizes.large};
+
+    blockquote {
+      padding-left: ${theme.fontSizes.medium};
+      border-left: dotted 1px ${theme.colors.midBlue};
+      margin: ${theme.fontSizes.medium};
+      font-family: Raleway, sans-serif;
+
+      &:last-of-type {
+        margin-bottom: ${theme.fontSizes.medium};
+      }
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      background: transparent;
+      text-align: left;
+      padding: 0 0 ${theme.fontSizes.medium};
+      box-shadow: none;
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  ul {
+    margin: 1rem 2rem;
+
+    li {
+      margin-bottom: ${theme.fontSizes.medium};
+    }
   }
 `

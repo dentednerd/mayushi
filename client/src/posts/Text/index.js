@@ -9,25 +9,30 @@ const Body = styled.section`
   margin: -0.25rem auto 0;
   padding: ${theme.fontSizes.large};
 
-  blockquote {
-    margin: ${theme.fontSizes.medium} 0 ${theme.fontSizes.medium} ${theme.fontSizes.small};
-    padding-left: ${theme.fontSizes.medium};
-    border-left: solid 1px ${theme.colors.lightBlue};
+  figure {
+    margin: 1rem auto;
+    text-align: center;
+  }
 
-    h2 {
-      background: transparent;
-      text-align: left;
-      padding: 0 0 ${theme.fontSizes.medium};
-      box-shadow: none;
-    }
+  img {
+    max-width: 100%;
+    margin: 0 auto;
   }
 `;
 
 const Text = ({ post }) => {
+  const content = post.trail.reduce((acc, tumblr, index) => {
+    if (tumblr.blog.name !== 'dentednerd' || index > 0) {
+      acc.push(`<a class="reblog-byline" href="https://${tumblr.blog.name}.tumblr.com">${tumblr.blog.name}:</a>`);
+      acc.push(`<blockquote>${tumblr.content_raw}</blockquote>`);
+    }
+    return acc;
+  }, []).join("");
+
   return (
-    <Post>
+    <Post post={post}>
       {post.title && <h2>{post.title}</h2>}
-      <Body dangerouslySetInnerHTML={{ __html: post.body }} />
+      <Body dangerouslySetInnerHTML={{ __html: content || post.body }} />
     </Post>
   )
 }

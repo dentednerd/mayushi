@@ -7,33 +7,36 @@ import Audio from '../../posts/Audio';
 import Link from '../../posts/Link';
 import Quote from '../../posts/Quote';
 import Chat from '../../posts/Chat';
+import Answer from '../../posts/Answer';
+import Pagination from '../../components/Pagination';
 
-const Home = () => {
+const Home = (props) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    console.log('Home fetching...');
+    console.log(`Home page ${currentPage}: `, posts);
+    setPosts([]);
+    window.scrollTo(0, 0);
     fetch(`api/posts/${currentPage}`)
     .then(res => res.json())
     .then(posts => setPosts(posts));
   }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [props.match.params]);
 
   return (
     <div>
       {(!posts || posts.length < 1) && (
         <Loading />
       )}
-      {posts.length === 20 && (
-        <button onClick={() => setCurrentPage(currentPage + 1)}>
-          &laquo; older
-        </button>
-      )}
-      {currentPage > 1 && (
-        <button onClick={() => setCurrentPage(currentPage - 1)}>
-          newer &raquo;
-        </button>
-      )}
+      <Pagination
+        count={posts.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {posts.map(post => {
         switch (post.type) {
           case 'photo':
@@ -50,12 +53,19 @@ const Home = () => {
             return <Link post={post} />
           case 'quote':
             return <Quote post={post} />
+          case 'answer':
+            return <Answer post={post} />
           default:
             return (
               <p>handle this post</p>
             )
         }
       })}
+      <Pagination
+        count={posts.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   )
 }

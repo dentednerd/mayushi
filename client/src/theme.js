@@ -33,7 +33,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    margin-bottom: ${theme.fontSizes.small};
+    margin: ${theme.fontSizes.medium} 0;
+  }
+
+  p:first-child {
+    margin-top: 0;
   }
 
   p:last-child {
@@ -87,13 +91,23 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #fff7f0;
     color: #384977;
     font-family: Raleway, sans-serif;
-    letter-spacing: 2px;
     box-shadow: 0px 2px 4px #b17948;
     padding: ${theme.fontSizes.large};
     text-align: center;
     max-width: 800px;
     margin: 0 -4rem;
     z-index: 2;
+    font-weight: 500;
+
+    a.reblog-byline {
+      display: block;
+      font-family: Raleway, sans-serif;
+      font-size: ${theme.fontSizes.medium};
+      padding: ${theme.fontSizes.small};
+      background-color: ${theme.colors.midBlue};
+      color: #fff;
+      margin: 0 0 ${theme.fontSizes.medium};
+    }
   }
 
   blockquote {
@@ -125,7 +139,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  ul {
+  ul, ol {
     margin: 1rem 2rem;
 
     li {

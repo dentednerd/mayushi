@@ -26,7 +26,7 @@ function App() {
     <AppContainer>
       <Helmet>
         <title>Dented Nerd</title>
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:300|Open+Sans+Condensed:300" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:wght@300;500|Open+Sans+Condensed:300" rel="stylesheet"/>
       </Helmet>
       <Header />
       <SwitchContainer>

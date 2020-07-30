@@ -34,7 +34,7 @@ const Nav = styled.nav`
 `;
 
 const Description = styled.p`
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
 `;
 
 const Header = () => (
@@ -44,7 +44,7 @@ const Header = () => (
         Dented Nerd
       </Link>
     </h1>
-    <Description>You know how some blogs have a snappy tagline? Yeah.</Description>
+    <Description>Adorable little urchin.</Description>
     <Nav>
       <Link to={'/posts/text'}>
         words
@@ -66,6 +66,9 @@ const Header = () => (
       </Link>
       <Link to={'/posts/link'}>
         links
+      </Link>
+      <Link to={'/posts/answer'}>
+        answers
       </Link>
     </Nav>
   </StyledHeader>

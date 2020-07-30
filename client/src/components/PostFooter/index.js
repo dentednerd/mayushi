@@ -37,13 +37,11 @@ const PostFooter = ({ post }) => {
   return (
     <>
       <Bar>
+        {post.source_title && (
+          <a href={post.source_url}>Source: {post.source_title}</a>
+        )}
         <a href={post.post_url}>{dayjs(post.date).format('DD MMM YYYY')}</a>
       </Bar>
-      {post.source_title && (
-        <Bar>
-          <a href={post.source_url}>By {post.source_title}</a>
-        </Bar>
-      )}
       {post.tags.length > 0 && (
         <Bar>
           {post.tags.map(tag => (

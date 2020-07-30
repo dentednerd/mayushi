@@ -19,21 +19,28 @@ const Body = styled.section`
   }
 `;
 
-const Text = ({ post }) => {
+const Answer = ({ post }) => {
+  console.log('Answer post', post);
+
   const content = post.trail.reduce((acc, tumblr, index) => {
     if (tumblr.blog.name !== 'dentednerd' || index > 0) {
       acc.push(`<a class="reblog-byline" href="https://${tumblr.blog.name}.tumblr.com">${tumblr.blog.name}:</a>`);
-      acc.push(`<blockquote>${tumblr.content_raw}</blockquote>`);
     }
+    acc.push(`<blockquote>${tumblr.content_raw}</blockquote>`);
     return acc;
   }, []).join("");
 
   return (
     <Post post={post}>
-      {post.title && <h2>{post.title}</h2>}
+      {post.question && (
+        <h2>
+          <a class="reblog-byline" href={post.asking_url}>{post.asking_name}:</a>
+          {post.question}
+        </h2>
+      )}
       <Body dangerouslySetInnerHTML={{ __html: content || post.body }} />
     </Post>
-  )
+  );
 }
 
-export default Text;
+export default Answer;

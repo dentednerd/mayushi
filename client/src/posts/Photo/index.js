@@ -4,19 +4,14 @@ import Post from '../../components/Post';
 import { theme } from '../../theme';
 
 const Image = styled.img`
+  width: 100%;
   max-width: calc(800px - 8rem);
   margin: 0 auto;
 `;
 
-const Grid = styled.section`
-  line-height: 0;
-  column-count: 2;
-  column-gap: 0px;
-
-  img {
-    width: 100% !important;
-    height: auto !important;
-  }
+const Row = styled.section`
+  display: flex;
+  flex-flow: row nowrap;
 `;
 
 const Caption = styled.section`
@@ -26,12 +21,15 @@ const Caption = styled.section`
   padding: ${theme.fontSizes.large};
 
   img {
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
   }
 `;
 
+const placeholderImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAAEElEQVR42mN8958BCBghFAAivAPdtKQOWQAAAABJRU5ErkJggg==';
+
 const Photo = ({ post }) => {
+  if (!post) return null;
+
   const content = post.trail.reduce((acc, tumblr, index) => {
     if (tumblr.blog.name !== 'dentednerd' || index > 0) {
       acc.push(`<a class="reblog-byline" href="https://${tumblr.blog.name}.tumblr.com">${tumblr.blog.name}:</a>`);
@@ -42,15 +40,32 @@ const Photo = ({ post }) => {
 
   return (
     <Post post={post}>
-      {post.photos.length === 1 && <Image src={post.photos[0].original_size.url} alt={post.photos[0].caption} />}
-      {post.photos.length > 1 && (
-        <Grid>
-          {post.photos.map(pic => (
-            <img src={pic.original_size.url} alt={pic.caption} />
-          ))}
-        </Grid>
-      )}
-      <Caption dangerouslySetInnerHTML={{ __html: content || post.caption }} />
+      {!post.photoset_layout && post.photos.map(pic => {
+        return (
+          <Image
+            src={pic ? pic.original_size.url : placeholderImage}
+            alt={pic ? pic.caption : ""}
+          />
+        );
+      })}
+      {post.photoset_layout && post.photoset_layout.split('').map(count => {
+        let images = [];
+        for (let step = 0; step < count; step++) {
+          images.push(
+            <img
+              style={{ width: `calc(100% / ${count})`, margin: '0 auto' }}
+              src={post.photos[step] ? post.photos[step].original_size.url : placeholderImage}
+              alt={post.photos[step] ? post.photos[step].caption : ""}
+            />
+          );
+        }
+        post.photos = post.photos.slice(count);
+        return (
+        <Row>
+          {images}
+        </Row>
+      )})}
+      {(content || post.caption) && <Caption dangerouslySetInnerHTML={{ __html: content || post.caption }} />}
     </Post>
   )
 }

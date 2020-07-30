@@ -7,34 +7,35 @@ import Audio from '../../posts/Audio';
 import Link from '../../posts/Link';
 import Quote from '../../posts/Quote';
 import Chat from '../../posts/Chat';
+import Pagination from '../../components/Pagination';
 
 const Tag = (props) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const { tag } = props.match.params;
-  console.log('Tag page: ', currentPage);
 
   useEffect(() => {
+    setPosts([]);
+    window.scrollTo(0, 0);
     fetch(`../api/tag/${tag}/${currentPage}`)
     .then(res => res.json())
     .then(posts => setPosts(posts));
   }, [tag, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [props.match.params]);
 
   return (
     <div>
       {(!posts || posts.length < 1) && (
         <Loading />
       )}
-      {posts.length === 20 && (
-        <button onClick={() => setCurrentPage(currentPage + 1)}>
-          &laquo; older
-        </button>
-      )}
-      {currentPage > 1 && (
-        <button onClick={() => setCurrentPage(currentPage - 1)}>
-          newer &raquo;
-        </button>
-      )}
+      <Pagination
+        count={posts.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {posts.map(post => {
         switch (post.type) {
           case 'photo':
@@ -57,6 +58,11 @@ const Tag = (props) => {
             )
         }
       })}
+      <Pagination
+        count={posts.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   )
 }

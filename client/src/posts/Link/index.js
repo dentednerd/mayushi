@@ -25,8 +25,7 @@ const Body = styled.section`
   }
 
   img {
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
   }
 
   blockquote {

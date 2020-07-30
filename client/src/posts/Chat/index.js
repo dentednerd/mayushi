@@ -50,7 +50,7 @@ const Chat = ({ post }) => {
               <p>{line.phrase || "..."}</p>
             </Chatter>
           );
-          if (line.label.match(/me|Me/g) || !line.label) return (
+          if (line.label.match(/(?:^|\W)me|Me(?:$|\W)/g) || !line.label) return (
             <Right>
               {(line.name !== "me" || line.name !== "Me") && <p className="their-name">{line.name}</p>}
               <p>{line.phrase || "..."}</p>

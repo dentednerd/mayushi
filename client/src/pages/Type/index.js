@@ -7,6 +7,8 @@ import Audio from '../../posts/Audio';
 import Link from '../../posts/Link';
 import Quote from '../../posts/Quote';
 import Chat from '../../posts/Chat';
+import Answer from '../../posts/Answer';
+import Pagination from '../../components/Pagination';
 
 const Type = (props) => {
   const [posts, setPosts] = useState([]);
@@ -14,26 +16,27 @@ const Type = (props) => {
   const { type } = props.match.params;
 
   useEffect(() => {
+    setPosts([]);
+    window.scrollTo(0, 0);
     fetch(`../api/posts/${type}/${currentPage}`)
     .then(res => res.json())
     .then(posts => setPosts(posts));
   }, [type, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [props.match.params]);
 
   return (
     <div>
       {(!posts || posts.length < 1) && (
         <Loading />
       )}
-      {posts.length === 20 && (
-        <button onClick={() => setCurrentPage(currentPage + 1)}>
-          &laquo; older
-        </button>
-      )}
-      {currentPage > 1 && (
-        <button onClick={() => setCurrentPage(currentPage - 1)}>
-          newer &raquo;
-        </button>
-      )}
+      <Pagination
+        count={posts.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {posts.map(post => {
         switch (post.type) {
           case 'photo':
@@ -50,12 +53,19 @@ const Type = (props) => {
             return <Link post={post} />
           case 'quote':
             return <Quote post={post} />
+          case 'answer':
+            return <Answer post={post} />
           default:
             return (
               <p>handle this post</p>
             )
         }
       })}
+      <Pagination
+        count={posts.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   )
 }

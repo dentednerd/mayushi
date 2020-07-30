@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { theme } from '../../theme';
 
 const StyledFooter = styled.footer`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background-color: ${theme.colors.darkBlue};
   color: ${theme.colors.lightPeach};
   padding: ${theme.fontSizes.small};

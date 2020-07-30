@@ -46,25 +46,25 @@ const Header = () => (
     </h1>
     <Description>You know how some blogs have a snappy tagline? Yeah.</Description>
     <Nav>
-      <Link to={'/text'}>
+      <Link to={'/posts/text'}>
         words
       </Link>
-      <Link to={'/photo'}>
+      <Link to={'/posts/photo'}>
         pictures
       </Link>
-      <Link to={'/audio'}>
+      <Link to={'/posts/audio'}>
         sounds
       </Link>
-      <Link to={'/video'}>
+      <Link to={'/posts/video'}>
         videos
       </Link>
-      <Link to={'/chat'}>
+      <Link to={'/posts/chat'}>
         conversations
       </Link>
-      <Link to={'/quote'}>
+      <Link to={'/posts/quote'}>
         quotes
       </Link>
-      <Link to={'/link'}>
+      <Link to={'/posts/link'}>
         links
       </Link>
     </Nav>

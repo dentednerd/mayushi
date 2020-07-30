@@ -8,16 +8,17 @@ import Link from '../../posts/Link';
 import Quote from '../../posts/Quote';
 import Chat from '../../posts/Chat';
 
-const Type = (props) => {
+const Tag = (props) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const { type } = props.match.params;
+  const { tag } = props.match.params;
+  console.log('Tag page: ', currentPage);
 
   useEffect(() => {
-    fetch(`../api/posts/${type}/${currentPage}`)
+    fetch(`../api/tag/${tag}/${currentPage}`)
     .then(res => res.json())
     .then(posts => setPosts(posts));
-  }, [type, currentPage]);
+  }, [tag, currentPage]);
 
   return (
     <div>
@@ -60,4 +61,10 @@ const Type = (props) => {
   )
 }
 
-export default Type;
+export default Tag;
+
+
+
+
+
+

@@ -10,16 +10,29 @@ import Chat from '../../posts/Chat';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
-    fetch('api/posts')
+    console.log('Home fetching...');
+    fetch(`api/posts/${currentPage}`)
     .then(res => res.json())
     .then(posts => setPosts(posts));
-  }, []);
+  }, [currentPage]);
 
   return (
     <div>
       {(!posts || posts.length < 1) && (
         <Loading />
+      )}
+      {posts.length === 20 && (
+        <button onClick={() => setCurrentPage(currentPage + 1)}>
+          &laquo; older
+        </button>
+      )}
+      {currentPage > 1 && (
+        <button onClick={() => setCurrentPage(currentPage - 1)}>
+          newer &raquo;
+        </button>
       )}
       {posts.map(post => {
         switch (post.type) {

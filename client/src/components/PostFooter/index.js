@@ -47,8 +47,8 @@ const PostFooter = ({ post }) => {
       {post.tags.length > 0 && (
         <Bar>
           {post.tags.map(tag => (
-            <Link to={`/${tag}`}>
-              #{tag}
+            <Link to={`/tag/${tag}`}>
+              {tag}
             </Link>
           ))}
         </Bar>

@@ -13,4 +13,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.listen(4560, () => console.log('Mayushi listening on port 4560'));
+const port = process.env.PORT || 4560;
+
+app.listen(port, () => console.log(`Mayushi listening on port ${port}`));

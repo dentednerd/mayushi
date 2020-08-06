@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Merriweather, serif;
     font-size: ${theme.fontSizes.medium};
     text-align: center;
+    overflow-x: hidden;
   }
 
   p {

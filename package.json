@@ -1,21 +1,19 @@
 {
   "name": "mayushi",
   "version": "1.0.0",
-  "description": "",
+  "description": "An ERN-stack website using Tumblr as CMS",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "push": "git push origin master && git push heroku master"
   },
   "author": "Joey Imlay",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-graphql": "^0.11.0",
-    "gql-tumblr": "^1.1.1",
     "graphql": "^15.3.0",
     "nodemon": "^2.0.4",
     "tumblr.js": "^2.0.2"

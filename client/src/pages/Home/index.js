@@ -15,7 +15,6 @@ const Home = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    console.log(`Home page ${currentPage}: `, posts);
     setPosts([]);
     window.scrollTo(0, 0);
     fetch(`api/posts/${currentPage}`)

@@ -20,8 +20,6 @@ const Body = styled.section`
 `;
 
 const Answer = ({ post }) => {
-  console.log('Answer post', post);
-
   const content = post.trail.reduce((acc, tumblr, index) => {
     if (tumblr.blog.name !== 'dentednerd' || index > 0) {
       acc.push(`<a class="reblog-byline" href="https://${tumblr.blog.name}.tumblr.com">${tumblr.blog.name}:</a>`);

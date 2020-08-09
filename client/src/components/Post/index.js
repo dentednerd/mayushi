@@ -16,15 +16,11 @@ const StyledPost = styled.article`
   }
 `;
 
-const Post = ({ post, children }) => {
-  // console.log('Post: ', post);
-
-  return (
-    <StyledPost>
-      {children}
-      <PostFooter post={post} />
-    </StyledPost>
-  )
-}
+const Post = ({ post, children }) => (
+  <StyledPost>
+    {children}
+    <PostFooter post={post} />
+  </StyledPost>
+);
 
 export default Post;

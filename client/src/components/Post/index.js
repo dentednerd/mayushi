@@ -9,6 +9,11 @@ const StyledPost = styled.article`
   background: ${theme.colors.midPeach};
   width: calc(100% - 8rem);
   max-width: calc(800px - 8rem);
+
+  @media (max-width: 767px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const Post = ({ post, children }) => {

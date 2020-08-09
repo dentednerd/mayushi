@@ -12,6 +12,14 @@ const Body = styled.section`
   figure {
     margin: 1rem auto;
     text-align: center;
+    max-width: 100%;
+
+    @media(max-width: 767px) {
+      iframe {
+        height: calc((100vw - 4rem) * 0.5625);
+        width: calc(100vw - 4rem);
+      }
+    }
   }
 
   img {

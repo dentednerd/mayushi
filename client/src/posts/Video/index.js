@@ -19,6 +19,12 @@ const Video = ({ post }) => {
     margin: 0 -4rem;
     height: 450px;
     width: 800px;
+
+    @media(max-width: 767px) {
+      margin: 0;
+      height: calc(100vw * 0.5625);
+      width: 100vw;
+    }
   `;
 
   const StyledYoutube = styled.iframe`
@@ -26,6 +32,12 @@ const Video = ({ post }) => {
     height: 450px;
     width: 800px;
     border: none;
+
+    @media(max-width: 767px) {
+      margin: 0;
+      height: calc(100vw * 0.5625);
+      width: 100vw;
+    }
   `;
 
   const content = post.trail.reduce((acc, tumblr, index) => {

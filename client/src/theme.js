@@ -26,11 +26,9 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${theme.colors.lightPeach};
     color: ${theme.colors.brown};
-    margin: 0 auto;
     font-family: Merriweather, serif;
     font-size: ${theme.fontSizes.medium};
     text-align: center;
-    overflow-x: hidden;
   }
 
   p {
@@ -100,6 +98,12 @@ export const GlobalStyle = createGlobalStyle`
     z-index: 2;
     font-weight: 500;
 
+    @media(max-width: 767px) {
+      margin: 0;
+      width: calc(100vw - (${theme.fontSizes.large} * 2);
+      max-width: calc(100vw - (${theme.fontSizes.large} * 2);
+    }
+
     a.reblog-byline {
       display: block;
       font-family: Raleway, sans-serif;
@@ -113,6 +117,7 @@ export const GlobalStyle = createGlobalStyle`
 
   blockquote {
     margin-bottom: ${theme.fontSizes.large};
+    overflow: hidden;
 
     blockquote {
       padding-left: ${theme.fontSizes.medium};

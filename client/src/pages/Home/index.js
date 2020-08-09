@@ -32,11 +32,6 @@ const Home = (props) => {
       {(!posts || posts.length < 1) && (
         <Loading />
       )}
-      <Pagination
-        count={posts.length}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
       {posts.map(post => {
         switch (post.type) {
           case 'photo':

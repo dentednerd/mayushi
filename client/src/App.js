@@ -12,7 +12,10 @@ const AppContainer = styled.div`
   position: relative;
   min-height: 100vh;
   margin-bottom: 0;
-  padding-bottom: 1.75rem;
+
+  @media(max-width: 767px) {
+    width: 100vw;
+  }
 `;
 
 const SwitchContainer = styled.div`

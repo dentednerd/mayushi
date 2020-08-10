@@ -19,7 +19,7 @@ const Chatter = styled.div`
   text-align: center;
 
   .their-name {
-    font-family: Raleway, sans-serif;
+    font-family: ${theme.fontFamilies.title};
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.75rem;

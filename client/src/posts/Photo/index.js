@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Post from '../../components/Post';
-import { theme } from '../../theme';
 
 const Image = styled.img`
   width: 100%;
@@ -14,29 +13,10 @@ const Row = styled.section`
   flex-flow: row nowrap;
 `;
 
-const Caption = styled.section`
-  text-align: left;
-  max-width: calc(800px - (${theme.fontSizes.large} * 2));
-  margin: -0.25rem auto 0;
-  padding: ${theme.fontSizes.large};
-
-  img {
-    width: 100%;
-  }
-`;
-
 const placeholderImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAAEElEQVR42mN8958BCBghFAAivAPdtKQOWQAAAABJRU5ErkJggg==';
 
 const Photo = ({ post }) => {
   if (!post) return null;
-
-  const content = post.trail.reduce((acc, tumblr, index) => {
-    if (tumblr.blog.name !== 'dentednerd' || index > 0) {
-      acc.push(`<a class="reblog-byline" href="https://${tumblr.blog.name}.tumblr.com">${tumblr.blog.name}:</a>`);
-      acc.push(`<blockquote>${tumblr.content_raw}</blockquote>`);
-    }
-    return acc;
-  }, []).join("");
 
   return (
     <Post post={post}>
@@ -65,7 +45,6 @@ const Photo = ({ post }) => {
           {images}
         </Row>
       )})}
-      {(content || post.caption) && <Caption dangerouslySetInnerHTML={{ __html: content || post.caption }} />}
     </Post>
   )
 }

@@ -1,14 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Post from '../../components/Post';
-import { theme } from '../../theme';
-
-const Caption = styled.section`
-  text-align: left;
-  max-width: calc(800px - (${theme.fontSizes.large} * 2));
-  margin: -0.25rem auto 0;
-  padding: ${theme.fontSizes.large};
-`;
 
 const Video = ({ post }) => {
   if (!post) return null;
@@ -40,15 +32,6 @@ const Video = ({ post }) => {
     }
   `;
 
-  const content = post.trail.reduce((acc, tumblr, index) => {
-    if (!tumblr.content_raw) return acc;
-    if (tumblr.blog.name !== 'dentednerd' || index > 0) {
-      acc.push(`<a class="reblog-byline" href="https://${tumblr.blog.name}.tumblr.com">${tumblr.blog.name}:</a>`);
-      acc.push(`<blockquote>${tumblr.content_raw}</blockquote>`);
-    }
-    return acc;
-  }, []).join("");
-
   return (
     <Post post={post}>
       {(post.video && post.video.youtube)
@@ -62,7 +45,6 @@ const Video = ({ post }) => {
             Your browser does not support the video tag.
           </StyledVideo>
         )}
-      {(content || post.caption) && <Caption dangerouslySetInnerHTML={{ __html: content || post.caption }} />}
     </Post>
   )
 }

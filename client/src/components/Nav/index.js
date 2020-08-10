@@ -11,7 +11,7 @@ const StyledNav = styled.nav`
   background-color: ${theme.colors.darkBlue};
   color: ${theme.colors.lightPeach};
   padding: ${theme.fontSizes.small};
-  font-family: Raleway, sans-serif;
+  font-family: ${theme.fontFamilies.title};
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 0.75rem;

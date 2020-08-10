@@ -7,7 +7,7 @@ import Nav from '../Nav';
 const StyledFooter = styled.footer`
   background-color: ${theme.colors.midBlue};
   color: #fff;
-  font-family: Raleway, sans-serif;
+  font-family: ${theme.fontFamilies.title};
   width: 100%;
 `;
 

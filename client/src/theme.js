@@ -14,6 +14,13 @@ export const theme = {
     medium: "16px",
     large: "32px",
     xLarge: "64px"
+  },
+  fontFamilies: {
+    text: "Merriweather, serif",
+    title: "Raleway, sans-serif"
+  },
+  widths: {
+    maxWidth: '50rem'
   }
 }
 
@@ -26,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${theme.colors.lightPeach};
     color: ${theme.colors.brown};
-    font-family: Merriweather, serif;
+    font-family: ${theme.fontFamilies.text};
     font-size: ${theme.fontSizes.medium};
     text-align: center;
   }
@@ -54,7 +61,7 @@ export const GlobalStyle = createGlobalStyle`
 
   a.reblog-byline {
     display: inline-block;
-    font-family: Raleway, sans-serif;
+    font-family: ${theme.fontFamilies.title};
     padding: ${theme.fontSizes.small};
     background-color: ${theme.colors.midBlue};
     color: #fff;
@@ -63,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     display: inline-block;
-    font-family: Raleway, sans-serif;
+    font-family: ${theme.fontFamilies.title};
     color: #fff;
     font-size: ${theme.fontSizes.xLarge};
     line-height: ${theme.fontSizes.xLarge};
@@ -89,7 +96,7 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     background-color: #fff7f0;
     color: #384977;
-    font-family: Raleway, sans-serif;
+    font-family: ${theme.fontFamilies.title};
     box-shadow: 0px 2px 4px #b17948;
     padding: ${theme.fontSizes.large};
     text-align: center;
@@ -106,7 +113,7 @@ export const GlobalStyle = createGlobalStyle`
 
     a.reblog-byline {
       display: block;
-      font-family: Raleway, sans-serif;
+      font-family: ${theme.fontFamilies.title};
       font-size: ${theme.fontSizes.medium};
       padding: ${theme.fontSizes.small};
       background-color: ${theme.colors.midBlue};
@@ -123,7 +130,7 @@ export const GlobalStyle = createGlobalStyle`
       padding-left: ${theme.fontSizes.medium};
       border-left: dotted 1px ${theme.colors.midBlue};
       margin: ${theme.fontSizes.medium};
-      font-family: Raleway, sans-serif;
+      font-family: ${theme.fontFamilies.title};
 
       &:last-of-type {
         margin-bottom: ${theme.fontSizes.medium};

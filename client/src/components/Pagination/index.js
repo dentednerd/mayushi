@@ -20,7 +20,7 @@ const Paginate = styled.section`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  font-family: Raleway, sans-serif;
+  font-family: ${theme.fontFamilies.title};
   text-transform: uppercase;
   letter-spacing: 2px;
   height: 1.25rem;

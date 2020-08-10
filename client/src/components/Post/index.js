@@ -15,6 +15,20 @@ const StyledPost = styled.article`
     width: 100%;
     max-width: 100%;
   }
+
+  h1 {
+    display: inline;
+    font-family: inherit;
+    color: inherit;
+    font-size: ${theme.fontSizes.large};
+    line-height: ${theme.fontSizes.large};
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-transform: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+    width: auto;
+  }
 `;
 
 const Post = ({ post, children }) => {
